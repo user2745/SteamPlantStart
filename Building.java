@@ -9,7 +9,7 @@ public class Building implements Runnable {
     private String name;
 
     public Building(String name, int size, int thermostatSetting, int outsideTemperature) {
-        steamPlant = new SteamPlant();
+        steamPlant = steamPlant.getInstance();
         this.size = size;
         this.thermostatSetting = thermostatSetting;
         this.outsideTemperature = outsideTemperature;
