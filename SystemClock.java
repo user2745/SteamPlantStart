@@ -1,7 +1,6 @@
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-
 public class SystemClock implements Runnable {
     private SteamPlant steamPlant;
 
