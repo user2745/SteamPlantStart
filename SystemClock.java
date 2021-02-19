@@ -1,14 +1,13 @@
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import SteamPlant; 
+
 
 public class SystemClock implements Runnable {
     private SteamPlant steamPlant;
 
     public SystemClock() {
-        steamPlant = SteamPlant.getInstance();
+        steamPlant = steamPlant.getInstance();
     }
-
     @Override
     public void run() {
         double pressureChange;
