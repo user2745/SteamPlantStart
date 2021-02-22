@@ -6,13 +6,29 @@ public class SteamPlant {
     private static final int FUEL_FLOW = 320;
     private double currentPressure;
     private int heatAvailable;
+    private static volatile SteamPlant uniqueInstance;
 
-    public SteamPlant() {
+    private SteamPlant() {
         currentPressure = INITIAL_PRESSURE;
         heatAvailable = INITIAL_HEAT_AVAILABLE;
     }
 
-    public synchronized int consumeHeat(String name, int h) {
+    public static SteamPlant getInstance()
+    {
+        if (uniqueInstance == null)
+        {
+            synchronized (SteamPlant.class)
+            {
+                if (uniqueInstance == null)
+                {
+                    uniqueInstance = new SteamPlant();
+                }
+            }
+        }
+        return uniqueInstance;
+    }
+
+    public int consumeHeat(String name, int h) {
         int consumed = (h < heatAvailable) ? h : heatAvailable;
         heatAvailable -= consumed;
         System.out.printf("%s: consumeHeat(%d): Consuming Heat Units: %d;" +
